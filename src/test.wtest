@@ -1,0 +1,24 @@
+import example.*
+
+test "obtengo nivel de hechizeria de Rolando" {
+	assert.equals(3*17+5, rolando.calculoNivelHechizeria())
+
+}
+
+test "Cambio a hechizo basico y obtengo nivel hechizeria" {
+	rolando.cambiarHechizo(hechizoBasico)
+	assert.equals(3*10+5, rolando.calculoNivelHechizeria())
+
+}
+
+test "Provocar eclipse" {
+	eclipse.hayEclipse()
+	assert.equals(3*10+5, rolando.calculoNivelHechizeria())
+	
+}
+
+test "Cambiar nombre de espectro malefico" {
+	espectroMalefico.seCambiaElNombre("Espectro buenifico")
+	assert.equals("Espectro buenifico", espectroMalefico.nombre())
+}
+
