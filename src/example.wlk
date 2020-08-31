@@ -1,28 +1,26 @@
 object rolando {
 	var nivelHechizo
 	var nivelLucha
-	var hechizo = espectroMalefico.nivelEspectro()
-	var lucha = espadaDestino.aportaEspada()
+	var hechizo = espectroMalefico.aplicoHechizo()
+	var lucha = espadaDestino.aportaArtefacto()
 	var resistencia = goblin.aportaResistencia()
 	var nuevoHechizo
+	var valorBaseHech = 3
+	var valorBaseLuch = 1
 	
 	method calculoNivelHechizeria(){
-		nivelHechizo = 3 * hechizo + fuerzaOscura.nivelFuerzaOscura()
+		nivelHechizo = valorBaseHech * hechizo + fuerzaOscura.nivelFuerzaOscura()
 	}
 	
 	method calculoNivelDeLucha(){
-		nivelLucha = 1 + lucha
+		nivelLucha = valorBaseLuch + lucha
 	}
 
 	method ganaAUnEnemigo(){
 		if(nivelHechizo > resistencia || nivelLucha > resistencia)
 		{
-		return true
+			return true
 		}
-		else{
-		return false
-		}
-		
 	}
 	method cambiarHechizo(){
 		hechizo = nuevoHechizo
@@ -38,7 +36,7 @@ object fuerzaOscura {
 
 object espectroMalefico {
 	var nombre
-	method nivelEspectro(){
+	method aplicoHechizo(){
 		return 17
 	}
 	
@@ -48,19 +46,18 @@ object espectroMalefico {
 	
 	method seCambiaElNombre(nuevoNombre){
 		nombre = nuevoNombre
-		return nombre
 	}
 }
 
 object hechizoBasico {
-	method nivelBasico(){
+	method aplicoHechizo(){
 		return 10
 	}
 }
 
 object espadaDestino{
 	var lucha
-	method aportaEspada(){
+	method aportaArtefacto(){
 		lucha = lucha + 3
 		return lucha
 	}
@@ -69,7 +66,7 @@ object espadaDestino{
 object collarDivino{
 	var cantPerlas
 	var lucha
-	method aportaCollar(){
+	method aportaArtefacto(){
 		lucha = lucha + cantPerlas
 		return lucha
 	}
@@ -77,7 +74,7 @@ object collarDivino{
 
 object mscaraOscura{
 	var mascara
-	 method aportaMascara(){
+	 method aportaArtefacto(){
 		if(fuerzaOscura.nivelFuerzaOscura() > 8)
 		{
 			mascara = fuerzaOscura.nivelFuerzaOscura() / 2
