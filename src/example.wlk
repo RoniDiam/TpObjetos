@@ -1,26 +1,18 @@
 object rolando {
 	var nivelHechizo
 	var nivelLucha
-	var hechizo = espectroMalefico.aplicoHechizo()
+	var property hechizo = espectroMalefico
 	var lucha = espadaDestino.aportaArtefacto()
 	var resistencia = goblin.aportaResistencia()
 	var nuevoHechizo
 	var valorBaseHech = 3
 	var valorBaseLuch = 1
+	var poderDefensa = 0
 	
-	method calculoNivelHechizeria(){
-		nivelHechizo = valorBaseHech * hechizo + fuerzaOscura.nivelFuerzaOscura()
-	}
+	method nivelDeHechiceria() = valorBaseHech * hechizo.aplicoHechizo() + fuerzaOscura.nivelFuerzaOscura()/2 // El /2 es por la resistencia del elfo
 	
-	method calculoNivelDeLucha(){
-		nivelLucha = valorBaseLuch + lucha
-	}
-
 	method ganaAUnEnemigo(){
-		if(nivelHechizo > resistencia || nivelLucha > resistencia)
-		{
-			return true
-		}
+		return (nivelHechizo > resistencia || nivelLucha > resistencia)
 	}
 	method cambiarHechizo(){
 		hechizo = nuevoHechizo
@@ -35,23 +27,22 @@ object fuerzaOscura {
 
 
 object espectroMalefico {
-	var nombre
 	method aplicoHechizo(){
 		return 17
 	}
 	
-	method nombre(nombre2){
-		return nombre2
-	}
-	
-	method seCambiaElNombre(nuevoNombre){
-		nombre = nuevoNombre
+	method esPoderoso(){
+		return self.aplicoHechizo() > 15
 	}
 }
 
 object hechizoBasico {
 	method aplicoHechizo(){
 		return 10
+	}
+	
+	method esPoderoso(){
+		return false
 	}
 }
 
@@ -67,18 +58,16 @@ object collarDivino{
 	var cantPerlas
 	var lucha
 	method aportaArtefacto(){
-		lucha = lucha + cantPerlas
-		return lucha
+		 return lucha + cantPerlas
+
 	}
 }
 
 object mscaraOscura{
-	var mascara
 	 method aportaArtefacto(){
 		if(fuerzaOscura.nivelFuerzaOscura() > 8)
 		{
-			mascara = fuerzaOscura.nivelFuerzaOscura() / 2
-			return mascara
+			return fuerzaOscura.nivelFuerzaOscura() / 2 
 		}
 		else{
 			 return 4
@@ -94,10 +83,8 @@ object goblin{
 }
 object elfoOScuro{
 	var resistencia = 2
-	var calculo
 	method aportaResistencia(){
-		calculo = resistencia + fuerzaOscura.nivelFuerzaOscura()
-		return calculo  
+		return resistencia + fuerzaOscura.nivelFuerzaOscura() 
 	}
 }
 
@@ -113,9 +100,7 @@ object guardian{
 
 object eclipse{
 	var fuerzaOscuridad = fuerzaOscura.nivelFuerzaOscura()
-	var calculoEclipse
 	method hayEclipse(){
-		calculoEclipse = fuerzaOscuridad * 2
-		return calculoEclipse
+		return fuerzaOscuridad * 2
 	}
 }
