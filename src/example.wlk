@@ -14,7 +14,7 @@ object rolando {
 	method ganaAUnEnemigo(){
 		return (nivelHechizo > resistencia || nivelLucha > resistencia)
 	}
-	method cambiarHechizo(){
+	method cambiarHechizo(nuevoHechizo){
 		hechizo = nuevoHechizo
 	}
 }
@@ -33,6 +33,10 @@ object espectroMalefico {
 	
 	method esPoderoso(){
 		return self.aplicoHechizo() > 15
+	}
+	
+	method seCambiaElNombre(nuevoNombre){
+		return nuevoNombre
 	}
 }
 
@@ -100,6 +104,7 @@ object guardian{
 
 object eclipse{
 	var fuerzaOscuridad = fuerzaOscura.nivelFuerzaOscura()
+	
 	method hayEclipse(){
 		return fuerzaOscuridad * 2
 	}
